@@ -3,9 +3,7 @@ import { render } from "react-dom";
 import { Rnd } from "react-rnd";
 
 const style = {
-  border: "solid 1px #ddd",
-  borderWidth: "1.5px",
-  borderColor: "rrr",
+  border: "solid 1px #fff",
   background: "#fff"
 };
 
@@ -13,7 +11,7 @@ const styleSelected = {
   borderWidth: "1.5px",
   borderColor: "rrr",
   borderStyle: "dotted",
-  background: "#f0f0f0"
+  background: "#fff"
 };
 
 class App extends React.Component {
@@ -46,9 +44,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div style={{ height: "700px" }}>
+      <div>
         <div
-          style={{ height: "700px" }}
+          style={{ height: "700px", backgroundColor: "#eee" }}
           onClick={() => this.setState({ selectedItemId: null })}
         />
         {this.state.items.map((item, index) => (
