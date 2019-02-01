@@ -25,7 +25,6 @@ class App extends React.Component {
           height: 200,
           x: 10,
           y: 10,
-          z: 1,
           text: "hehe"
         },
         {
@@ -34,7 +33,6 @@ class App extends React.Component {
           height: 200,
           x: 50,
           y: 50,
-          z: 0,
           text: "hoho"
         }
       ],
@@ -69,7 +67,6 @@ class App extends React.Component {
               newItem[index].height = ref.style.height;
               this.setState({ items: newItem });
             }}
-            z={item.z}
             bounds="parent"
           >
             <div
