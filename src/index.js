@@ -10,7 +10,7 @@ const style = {
 const styleSelected = {
   borderWidth: "1.5px",
   borderColor: "rrr",
-  borderStyle: "dotted",
+  borderStyle: "dashed",
   background: "#fff"
 };
 
@@ -54,7 +54,7 @@ class App extends React.Component {
               this.state.selectedItemId === item.id ? styleSelected : style
             }
             size={{ width: item.width, height: item.height }}
-            position={{ x: item.x, y: item.y }}
+            default={{ x: item.x, y: item.y }}
             onDragStop={(e, d) => {
               const newItem = this.state.items;
               newItem[index].x = d.x;
