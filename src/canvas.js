@@ -19,11 +19,16 @@ export default ({
   selectedItemId,
   addNewItem,
   updateItems,
-  setSelectedItem
+  setSelectedItem,
+  cursorPositionActive
 }) => (
   <Fragment>
     <div
-      style={{ height: "700px", backgroundColor: "#eee" }}
+      style={{
+        height: "700px",
+        backgroundColor: "#eee",
+        cursor: cursorPositionActive ? "copy" : "default"
+      }}
       onClick={() => addNewItem(point)}
     />
     {items.map((item, index) => (

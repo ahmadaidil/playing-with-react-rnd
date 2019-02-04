@@ -64,7 +64,8 @@ class App extends React.Component {
 
   updateItems = items => this.setState({ items });
 
-  setSelectedItem = selectedItemId => this.setState({ selectedItemId });
+  setSelectedItem = selectedItemId =>
+    this.setState({ selectedItemId, cursorPositionActive: false });
 
   render() {
     const canvasProps = {
@@ -75,7 +76,9 @@ class App extends React.Component {
     };
     return (
       <div>
-        <div onClick={this.enableNewItem}>Add Item</div>
+        <div onClick={this.enableNewItem} style={{ cursor: "pointer" }}>
+          Add Item
+        </div>
         <CursorPosition
           activationInteractionMouse={INTERACTIONS.CLICK}
           isEnabled={this.state.cursorPositionActive}
