@@ -51,18 +51,24 @@ class App extends React.Component {
     this.setState(prevState => {
       if (prevState.cursorPositionActive) {
         const items = prevState.items;
-        items.push(newItem(position));
+        const item = newItem(position);
+        items.push(item);
         return {
           ...prevState,
           items,
-          cursorPositionActive: false
+          cursorPositionActive: false,
+          selectedItemId: item.id
         };
       }
       return { ...prevState, selectedItemId: null };
     });
   };
 
-  updateItems = items => this.setState({ items });
+  updateItems = (items, id) =>
+    this.setState({
+      items,
+      selectedItemId: id
+    });
 
   setSelectedItem = selectedItemId =>
     this.setState({ selectedItemId, cursorPositionActive: false });

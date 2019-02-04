@@ -41,13 +41,13 @@ export default ({
           const newItems = items;
           newItems[index].x = d.x;
           newItems[index].y = d.y;
-          updateItems(newItems);
+          updateItems(newItems, newItems[index].id);
         }}
         onResize={(e, dir, ref, delta, pos) => {
           const newItems = items;
           newItems[index].width = ref.style.width;
           newItems[index].height = ref.style.height;
-          updateItems(newItems);
+          updateItems(newItems, newItems[index].id);
         }}
         bounds="parent"
       >
