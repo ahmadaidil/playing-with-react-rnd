@@ -76,9 +76,7 @@ class App extends React.Component {
     };
     return (
       <div>
-        <div onClick={this.enableNewItem} style={{ cursor: "pointer" }}>
-          Add Item
-        </div>
+        <button onClick={this.enableNewItem}>Add Item</button>
         <CursorPosition
           isEnabled={this.state.cursorPositionActive}
           mapChildProps={({ position }) => ({ point: position })}
