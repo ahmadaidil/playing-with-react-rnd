@@ -1,17 +1,17 @@
 {
-  "name": "new",
+  "name": "playing-with-react-rnd",
   "version": "1.0.0",
   "description": "",
   "keywords": [],
   "homepage": "https://codesandbox.io/s/new",
   "main": "src/index.js",
   "dependencies": {
-    "react": "16.4.1",
-    "react-cursor-position": "3.0.3",
-    "react-dom": "16.4.1",
+    "react": "16.7.0",
+    "react-cursor-position": "latest",
+    "react-dom": "16.7.0",
     "react-rnd": "9.1.1",
-    "react-scripts": "1.1.0",
-    "shortid": "2.2.14"
+    "react-scripts": "2.1.3",
+    "shortid": "latest"
   },
   "devDependencies": {},
   "scripts": {
