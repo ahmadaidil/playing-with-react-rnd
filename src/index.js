@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
-import CursorPosition, { INTERACTIONS } from "react-cursor-position";
+import CursorPosition from "react-cursor-position";
 import shortid from "shortid";
 
 import Canvas from "./canvas";
@@ -80,7 +80,6 @@ class App extends React.Component {
           Add Item
         </div>
         <CursorPosition
-          activationInteractionMouse={INTERACTIONS.CLICK}
           isEnabled={this.state.cursorPositionActive}
           mapChildProps={({ position }) => ({ point: position })}
         >
