@@ -7,9 +7,11 @@
   "main": "src/index.js",
   "dependencies": {
     "react": "16.4.1",
+    "react-cursor-position": "3.0.3",
     "react-dom": "16.4.1",
     "react-rnd": "9.1.1",
-    "react-scripts": "1.1.0"
+    "react-scripts": "1.1.0",
+    "shortid": "2.2.14"
   },
   "devDependencies": {},
   "scripts": {

@@ -1,18 +1,18 @@
 import React from "react";
 import { render } from "react-dom";
-import { Rnd } from "react-rnd";
+import CursorPosition, { INTERACTIONS } from "react-cursor-position";
+import shortid from "shortid";
 
-const style = {
-  border: "solid 1px #fff",
-  background: "#fff"
-};
+import Canvas from "./canvas";
 
-const styleSelected = {
-  borderWidth: "1.5px",
-  borderColor: "rrr",
-  borderStyle: "dashed",
-  background: "#fff"
-};
+const newItem = ({ x, y }) => ({
+  id: shortid.generate(),
+  width: 200,
+  height: 200,
+  x,
+  y,
+  text: "new item"
+});
 
 class App extends React.Component {
   constructor() {
@@ -36,51 +36,53 @@ class App extends React.Component {
           text: "hoho"
         }
       ],
-      selectedItemId: null
+      selectedItemId: null,
+      cursorPositionActive: false
     };
   }
 
+  enableNewItem = () => {
+    this.setState({
+      cursorPositionActive: true
+    });
+  };
+
+  addNewItem = position => {
+    this.setState(prevState => {
+      if (prevState.cursorPositionActive) {
+        const items = prevState.items;
+        items.push(newItem(position));
+        return {
+          ...prevState,
+          items,
+          cursorPositionActive: false
+        };
+      }
+      return { ...prevState, selectedItemId: null };
+    });
+  };
+
+  updateItems = items => this.setState({ items });
+
+  setSelectedItem = selectedItemId => this.setState({ selectedItemId });
+
   render() {
+    const canvasProps = {
+      ...this.state,
+      addNewItem: this.addNewItem,
+      updateItems: this.updateItems,
+      setSelectedItem: this.setSelectedItem
+    };
     return (
       <div>
-        <div
-          style={{ height: "700px", backgroundColor: "#eee" }}
-          onClick={() => this.setState({ selectedItemId: null })}
-        />
-        {this.state.items.map((item, index) => (
-          <Rnd
-            key={item.id}
-            style={
-              this.state.selectedItemId === item.id ? styleSelected : style
-            }
-            size={{ width: item.width, height: item.height }}
-            default={{ x: item.x, y: item.y }}
-            onDragStop={(e, d) => {
-              const newItem = this.state.items;
-              newItem[index].x = d.x;
-              newItem[index].y = d.y;
-              this.setState({ items: newItem });
-            }}
-            onResize={(e, dir, ref, delta, pos) => {
-              const newItem = this.state.items;
-              newItem[index].width = ref.style.width;
-              newItem[index].height = ref.style.height;
-              this.setState({ items: newItem });
-            }}
-            bounds="parent"
-          >
-            <div
-              style={{
-                background: "transparent",
-                height: item.height,
-                width: item.width
-              }}
-              onClick={() => this.setState({ selectedItemId: item.id })}
-            >
-              {item.text}
-            </div>
-          </Rnd>
-        ))}
+        <div onClick={this.enableNewItem}>Add Item</div>
+        <CursorPosition
+          activationInteractionMouse={INTERACTIONS.CLICK}
+          isEnabled={this.state.cursorPositionActive}
+          mapChildProps={({ position }) => ({ point: position })}
+        >
+          <Canvas {...canvasProps} />
+        </CursorPosition>
       </div>
     );
   }
